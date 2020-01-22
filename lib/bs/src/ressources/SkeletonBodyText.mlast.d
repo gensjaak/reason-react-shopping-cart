@@ -1,0 +1,1 @@
+src/ressources/SkeletonBodyText.cmj :

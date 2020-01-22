@@ -1,0 +1,12 @@
+{
+  "name": "reason-react-shopping-cart",
+  "reason": { "react-jsx": 3 },
+  "refmt": 3,
+  "bs-dependencies": ["reason-react"],
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    }
+  ]
+}
