@@ -1,1 +1,0 @@
-src/ressources/SkeletonDisplayText.cmj :

@@ -19,6 +19,8 @@ type state = {
   cart,
 };
 
+let getProductById = (items, id) => items->List.getBy(item => item.id === id);
+
 let renderItem = (item: product) => {
   let shortcutActions = [|
     ResourceItem.shortcutAction(
@@ -73,6 +75,20 @@ let make = () => {
       },
     );
 
+  let renderCartProductItem = cartProduct =>
+    <ListItem key={string_of_int(cartProduct.productId)}>
+      <span>
+        (
+          switch (getProductById(items, cartProduct.productId)) {
+          | Some(product) => product.name
+          | None => "Product not found"
+          }
+        )
+        ->str
+      </span>
+      <span> (", Qte = " ++ string_of_int(cartProduct.quantity))->str </span>
+    </ListItem>;
+
   <AppProvider>
     <Page title="React Shopping Cart">
       <Layout>
@@ -100,21 +116,9 @@ let make = () => {
               Card.secondaryFooterAction(~content="Cancel cart", ())
             }>
             <CardSection title="Totals">
-              <PolarisList _type=`number>
+              <PolarisList _type=`bullet>
                 {
-                  cart.products
-                  ->List.map(item =>
-                      <ListItem key={string_of_int(item.productId)}>
-                        <span>
-                          ("ID Produit = " ++ string_of_int(item.productId))
-                          ->str
-                        </span>
-                        <span>
-                          (", Qte = " ++ string_of_int(item.quantity))->str
-                        </span>
-                      </ListItem>
-                    )
-                  ->List.toArray
+                  cart.products->List.map(renderCartProductItem)->List.toArray
                   |> React.array
                 }
               </PolarisList>

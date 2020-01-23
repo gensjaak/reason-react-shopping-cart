@@ -1,1 +1,0 @@
-src/ressources/Banner.cmj :

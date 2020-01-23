@@ -1,1 +1,0 @@
-src/ressources/Badge.cmj :

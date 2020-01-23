@@ -24,4 +24,4 @@ yarn-error.log*
 
 .bsb.lock
 
-lib/
+/lib
